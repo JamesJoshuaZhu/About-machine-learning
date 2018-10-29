@@ -21,6 +21,7 @@ def TaoBao():
     r = requests.get(url,headers = headers,timeout=20)
     h = r.text.replace("jsonp355(","").replace(");","")
     dt = json.loads(h)
+    print(type(h))
     a = dt.get("API.CustomizedApi").get("itemlist").get("auctions")
     #print (a)
     data={}
@@ -40,7 +41,7 @@ def TaoBao():
         #print (lipstickurl)
         #print(People_buy)
         #time.sleep(10)
-        data_db(data)
+        #data_db(data)
 def data_db(data):
       count = db[table].find({'lipstickurl':data.get("lipstickurl")}).count()
       if count <= 0:
